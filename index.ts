@@ -35,7 +35,7 @@ async function askAI(data: string) {
 }
 
 async function createPost(data: string) {
-    return await agent.post({ text: data, createdAt: new Date().toISOString(), facets });
+    return await agent.post({ text: data, createdAt: new Date().toISOString() });
 }
 
 async function getData(uri = 'at://did:plc:jxln4plqdfg7j3zgr6mgrk6t/app.bsky.feed.post/3lbopwtwyps2l') {
@@ -67,7 +67,9 @@ async function newPostJob() {
 async function main() {
     console.log('Logging in...');
     await agent.login({ identifier: process.env.BLUESKY_USERNAME!, password: process.env.BLUESKY_PASSWORD!});
-    console.log('Online - Logged in as: '+agent.user?.handle);
+    console.log('Online');
+
+    await newPostJob();
 }
 
 main();
