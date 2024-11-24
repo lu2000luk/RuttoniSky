@@ -1,0 +1,17 @@
+{
+  "name": "ruttonisky",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@atproto/api": "^0.13.18",
+    "cron": "^3.2.1",
+    "dotenv": "^16.4.5",
+    "groq-sdk": "^0.8.0"
+  }
+}
