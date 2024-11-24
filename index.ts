@@ -35,7 +35,7 @@ async function askAI(data: string) {
 }
 
 async function createPost(data: string) {
-    await agent.post({ text: data, createdAt: new Date().toISOString() });
+    return await agent.post({ text: data, createdAt: new Date().toISOString(), facets });
 }
 
 async function getData(uri = 'at://did:plc:jxln4plqdfg7j3zgr6mgrk6t/app.bsky.feed.post/3lbopwtwyps2l') {
@@ -56,20 +56,18 @@ async function getLastPost() {
     return await fs.readFileSync('lastpost', 'utf8');
 }
 
+async function newPostJob() {
+    let replies = await getData(await getLastPost());
+    let AIResponse = await askAI(replies);
+    let post = await createPost(AIResponse);
+    await saveLastPost(post.uri);
+    console.log('Posted: '+post.uri);
+}
+
 async function main() {
     console.log('Logging in...');
     await agent.login({ identifier: process.env.BLUESKY_USERNAME!, password: process.env.BLUESKY_PASSWORD!});
-    console.log('Ready!');
-
-    console.log('Getting data...');
-    let replies = await getData();
-
-    console.log('Asking AI...');
-    let AIResponse = await askAI(replies);
-
-    console.log("----------------")
-
-    console.log(AIResponse);
+    console.log('Online - Logged in as: '+agent.user?.handle);
 }
 
 main();
