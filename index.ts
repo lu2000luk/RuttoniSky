@@ -69,7 +69,8 @@ async function main() {
     await agent.login({ identifier: process.env.BLUESKY_USERNAME!, password: process.env.BLUESKY_PASSWORD!});
     console.log('Online');
 
-    await newPostJob();
+    let job = new CronJob('0 */30 * * * *', newPostJob, null, true, 'America/Los_Angeles');
+    job.start();
 }
 
 main();
