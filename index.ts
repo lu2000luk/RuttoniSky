@@ -23,7 +23,7 @@ async function askAI(data: string) {
             "content": "Current date: "+new Date().toLocaleDateString+"\n Replies: "+data
           }
         ],
-        "model": "llama-3.1-70b-versatile",
+        "model": "gemma2-9b-it",
         "temperature": 1,
         "max_tokens": 1040,
         "top_p": 1,
