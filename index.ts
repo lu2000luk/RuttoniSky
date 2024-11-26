@@ -1,8 +1,8 @@
 // @ts-nocheck
 import Groq from "groq-sdk";
 import "dotenv/config";
-import { BskyAgent } from '@atproto/api';
-import { CronJob, RichText } from 'cron';
+import { BskyAgent, RichText } from '@atproto/api';
+import { CronJob } from 'cron';
 import fs from 'fs';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
